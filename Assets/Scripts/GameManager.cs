@@ -14,29 +14,8 @@ namespace XR_Education_Project {
         void Start()
         {
             uiManager = FindObjectOfType<UIManager>();
-            elementObjects = new GameObject[elementDataArray.Length];
-            InitializePeriodicTable();
         }
 
-        public void InitializePeriodicTable()
-        {
-            if (elementDataArray.Length > 0)
-            {
-                for (int i = 0; i < elementDataArray.Length; i++)
-                {
-                    // Instantiate the element prefab and set up its data
-                    elementObjects[i] = Instantiate(elementPrefab);
-
-                    // Get the element script and assign the data
-                    Element elementScript = elementObjects[i].GetComponent<Element>();
-                    if (elementScript!= null)
-                    {
-                        elementScript.elementData = elementDataArray[i];
-                    }
-                }
-            }
-
-        }
         public void OnElementClicked(ElementData elementData)
         {
             if (elementData != null)

@@ -6,6 +6,8 @@ namespace XR_Education_Project {
     [CreateAssetMenu(fileName = "NewElement", menuName = "CreateNewElement")] //Create new element by right-clicking in elements folder: Create > CreateNewElement
     public class ElementData : ScriptableObject
     {
+        public int rowIdx; 
+        public int colIdx;
         public int atomicNumber;
         public string elementName;
         public string atomicSymbol;
