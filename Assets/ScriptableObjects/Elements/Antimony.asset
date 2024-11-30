@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b90c35a0f4486ebeb7d52254dfb81, type: 3}
   m_Name: Antimony
   m_EditorClassIdentifier: 
+  rowIdx: 4
+  colIdx: 14
   atomicNumber: 51
   elementName: Antimony
   atomicSymbol: Sb

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b90c35a0f4486ebeb7d52254dfb81, type: 3}
   m_Name: Lithium
   m_EditorClassIdentifier: 
+  rowIdx: 1
+  colIdx: 0
   atomicNumber: 3
   elementName: Lithium
   atomicSymbol: Li

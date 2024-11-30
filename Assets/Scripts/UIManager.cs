@@ -13,6 +13,30 @@ namespace XR_Education_Project {
         private Button backToMenuButton;
         private Button startChapterButton;
 
+
+        public void DisplayElement(GameObject element)
+        {
+            ElementData elementData = element.GetComponent<Element>().elementData;
+
+            TextMeshProUGUI[] textFields = element.GetComponentsInChildren<TextMeshProUGUI>();
+            Dictionary<string, string> elementInfoMap = new Dictionary<string, string>
+            {
+                { "Symbol", elementData.atomicSymbol },
+                { "AtomicNumber", elementData.atomicNumber.ToString() },
+                { "AtomicMass", elementData.atomicMass.ToString() },
+                { "Name", elementData.elementName },
+            };
+            
+            foreach (TextMeshProUGUI textField in textFields)
+            {
+                if (elementInfoMap.ContainsKey(textField.name))
+                {
+                    textField.text = elementInfoMap[textField.name];
+                }
+            }
+            
+        }
+
         public void DisplayElementInfoPanel(ElementData elementData)
         {
             // Instantiate panel

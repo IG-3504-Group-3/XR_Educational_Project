@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b90c35a0f4486ebeb7d52254dfb81, type: 3}
   m_Name: Scandium
   m_EditorClassIdentifier: 
+  rowIdx: 3
+  colIdx: 2
   atomicNumber: 21
   elementName: Scandium
   atomicSymbol: Sc
