@@ -8,11 +8,22 @@ namespace XR_Education_Project {
     public class UIManager : MonoBehaviour
     {
         public GameObject elementInfoPanelPrefab;
+        public GameObject mainMenu;
         private GameObject infoPanel;
 
         private Button backToMenuButton;
         private Button startChapterButton;
 
+
+        public void EnableMenuUI()
+        {
+            mainMenu.SetActive(true);
+        }
+
+        public void DisableMenuUI()
+        {
+            mainMenu.SetActive(false);
+        }
 
         public void DisplayElement(GameObject element)
         {
@@ -38,7 +49,9 @@ namespace XR_Education_Project {
         }
 
         public void DisplayElementInfoPanel(ElementData elementData)
-        {
+        {   
+            DisableMenuUI();
+            
             // Instantiate panel
             infoPanel = Instantiate(elementInfoPanelPrefab);
 
@@ -95,6 +108,7 @@ namespace XR_Education_Project {
         {
             Debug.Log("Returning to Menu...");
             Destroy(infoPanel);
+            EnableMenuUI();
         }
 
     }
