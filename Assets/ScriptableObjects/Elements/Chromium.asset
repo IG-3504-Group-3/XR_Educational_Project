@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b90c35a0f4486ebeb7d52254dfb81, type: 3}
   m_Name: Chromium
   m_EditorClassIdentifier: 
+  rowIdx: 3
+  colIdx: 5
   atomicNumber: 24
   elementName: Chromium
   atomicSymbol: Cr

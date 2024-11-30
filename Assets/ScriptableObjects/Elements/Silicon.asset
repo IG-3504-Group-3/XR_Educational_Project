@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b90c35a0f4486ebeb7d52254dfb81, type: 3}
   m_Name: Silicon
   m_EditorClassIdentifier: 
+  rowIdx: 2
+  colIdx: 13
   atomicNumber: 14
   elementName: Silicon
   atomicSymbol: Si

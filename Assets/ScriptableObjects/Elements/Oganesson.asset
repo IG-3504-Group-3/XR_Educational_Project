@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b90c35a0f4486ebeb7d52254dfb81, type: 3}
   m_Name: Oganesson
   m_EditorClassIdentifier: 
+  rowIdx: 6
+  colIdx: 17
   atomicNumber: 118
   elementName: Oganesson
   atomicSymbol: Og

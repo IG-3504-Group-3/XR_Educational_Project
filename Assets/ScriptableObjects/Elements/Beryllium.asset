@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b90c35a0f4486ebeb7d52254dfb81, type: 3}
   m_Name: Beryllium
   m_EditorClassIdentifier: 
+  rowIdx: 1
+  colIdx: 1
   atomicNumber: 4
   elementName: Beryllium
   atomicSymbol: Be
