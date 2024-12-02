@@ -8,12 +8,22 @@ namespace XR_Education_Project {
     public class UIManager : MonoBehaviour
     {
         public GameObject elementInfoPanelPrefab;
+        public GameObject chapterViewPrefab;
         public GameObject mainMenu;
+
+        private GameManager gameManager;
+
         private GameObject infoPanel;
+        private GameObject chapterUI;
 
         private Button backToMenuButton;
         private Button startChapterButton;
+        private Button leaveChapterButton;
 
+        void Start()
+        {
+            gameManager = FindObjectOfType<GameManager>();
+        }
 
         public void EnableMenuUI()
         {
@@ -51,6 +61,9 @@ namespace XR_Education_Project {
         public void DisplayElementInfoPanel(ElementData elementData)
         {   
             DisableMenuUI();
+
+            // Set game state
+            gameManager.stateInfo();
             
             // Instantiate panel
             infoPanel = Instantiate(elementInfoPanelPrefab);
@@ -101,14 +114,58 @@ namespace XR_Education_Project {
             {
                 backToMenuButton.onClick.AddListener(backToMenuClicked);
             }
-            // TODO: startChapterButton.onClick.AddListener(startChapterClicked);
+
+            if (startChapterButton != null)
+            {
+                startChapterButton.onClick.AddListener(startChapterClicked);
+            }
         }
 
         public void backToMenuClicked()
         {
-            Debug.Log("Returning to Menu...");
+            Debug.Log("Returning to menu...");
             Destroy(infoPanel);
             EnableMenuUI();
+
+            // Set game state
+            gameManager.stateMenu();
+        }
+
+        public void startChapterClicked()
+        {
+            Debug.Log("Starting chapter...");
+            infoPanel.SetActive(false);
+
+            // Set game state
+            gameManager.stateChapter();
+
+            // Instantiate 
+            chapterUI = Instantiate(chapterViewPrefab);
+
+            //Attach camera view
+            Canvas chapterCanvas = chapterUI.transform.Find("Canvas").GetComponent<Canvas>();
+            if (chapterCanvas)
+            {
+                chapterCanvas.worldCamera = Camera.main;
+            }
+
+            chapterUI.SetActive(true);
+
+            // Get exit button
+            leaveChapterButton = chapterUI.transform.Find("Canvas/exitChapter")?.GetComponent<Button>();
+            if (leaveChapterButton != null)
+            {
+                leaveChapterButton.onClick.AddListener(leaveChapterCliked);
+            }
+        }
+
+        public void leaveChapterCliked()
+        {
+            Destroy(chapterUI);
+            infoPanel.SetActive(true);
+
+            // Set game state
+            gameManager.stateInfo();
         }
 
     }

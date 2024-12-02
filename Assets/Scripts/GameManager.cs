@@ -10,22 +10,27 @@ namespace XR_Education_Project {
         public GameObject elementPrefab;
 
         private GameObject[] elementObjects;
+        [HideInInspector] public string gameState;
 
         void Start()
         {
             uiManager = FindObjectOfType<UIManager>();
+            stateMenu();
         }
 
-        public void OnElementClicked(ElementData elementData)
+        public void stateMenu()
         {
-            if (elementData != null)
-            {
-                uiManager.DisplayElementInfoPanel(elementData); 
-            }
-            else
-            {
-                Debug.LogError("Element not found.");
-            }
+            gameState = "menu";
+        }
+
+        public void stateInfo()
+        {
+            gameState = "info";
+        }
+
+        public void stateChapter()
+        {
+            gameState = "chapter";
         }
     }
 }
