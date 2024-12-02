@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace XR_Education_Project {
     public class Element : MonoBehaviour
@@ -17,11 +18,11 @@ namespace XR_Education_Project {
 
         void OnMouseDown() // Replace with VR interaction later
         {
-            if (elementData != null)
+            if (gameManager.gameState == "menu" && elementData != null)
             {
                 uiManager.DisplayElementInfoPanel(elementData);
             }
-            else
+            else if (elementData == null )
             {
                 Debug.LogError("Element not found.");
             }
