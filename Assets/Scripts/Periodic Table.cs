@@ -18,6 +18,7 @@ namespace XR_Education_Project {
         public GameObject element; // Element prfab to instantiate
         private List<List<int>> elementIdxs = new List<List<int>>(); // 2D Array
         public ElementData[] elementDataArray; // Element data objects added as a list on the inspector
+        public Dictionary<(int,int), GameObject> elementDict = new Dictionary<(int,int), GameObject>();
         private List<(int, int)> emptyPos = new List<(int, int)>
         {
             // First Line
@@ -92,6 +93,10 @@ namespace XR_Education_Project {
                             renderer.material = GetMaterial(newElement.GetComponent<Element>().elementData.elementClass);
                         }
                         newElement.transform.parent = gameObject.transform;
+
+                        // Set the element action
+                        newElement.GetComponent<Element>().SetAction("MainMenu");
+                        elementDict[(rowIdx, colIdx)] = newElement;
                     }
                 }
             }
@@ -115,6 +120,13 @@ namespace XR_Education_Project {
                     return metalloidMaterial;
                 default:
                     return metalMaterial;
+            }
+        }
+
+        private void SetElementActions(string action)
+        {
+            foreach (GameObject element in elementDict.Values) {
+                element.GetComponent<Element>().SetAction(action);
             }
         }
 
