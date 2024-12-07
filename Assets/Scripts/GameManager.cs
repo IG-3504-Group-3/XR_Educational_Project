@@ -5,8 +5,12 @@ using UnityEngine;
 namespace XR_Education_Project {
     public class GameManager : MonoBehaviour
     {
-        public UIManager uiManager;
+        public MoleculeData[] allMoleculeData;
         public ElementData[] elementDataArray;
+
+        public ElementData test;
+
+        public UIManager uiManager;
         public GameObject elementPrefab;
 
         private GameObject[] elementObjects;
@@ -31,6 +35,10 @@ namespace XR_Education_Project {
         public void stateChapter()
         {
             gameState = "chapter";
+            ChapterSystem.StartChapter(test);
+
+            ChapterSystem.EndChapter();
+
         }
     }
 }
