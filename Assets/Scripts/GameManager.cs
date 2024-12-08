@@ -8,10 +8,9 @@ namespace XR_Education_Project {
         public MoleculeData[] allMoleculeData;
         public ElementData[] elementDataArray;
 
-        public ElementData test;
-
         public UIManager uiManager;
         public GameObject elementPrefab;
+        public GameObject atomPrefab;
 
         private GameObject[] elementObjects;
         [HideInInspector] public string gameState;
@@ -32,10 +31,10 @@ namespace XR_Education_Project {
             gameState = "info";
         }
 
-        public void stateChapter()
+        public void stateChapter(ElementData element)
         {
             gameState = "chapter";
-            ChapterSystem.StartChapter(test);
+            ChapterSystem.StartChapter(element);
 
             ChapterSystem.EndChapter();
 
