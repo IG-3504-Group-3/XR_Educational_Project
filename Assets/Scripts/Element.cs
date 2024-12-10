@@ -27,13 +27,13 @@ namespace XR_Education_Project {
 
         void OnMouseDown() // Replace with VR interaction later
         {
-            switch (gameManager.gameState)
+            switch (action)
             {
-                case "menu":
+                case "MainMenu":
                     this.OnMainMenu();
                     break;
 
-                case ("chapter"):
+                case ("Chapter"):
                     this.InstantiateAtom();
                     break;
 
