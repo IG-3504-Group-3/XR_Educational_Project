@@ -61,15 +61,17 @@ public class ChapterManager: MonoBehaviour
         {
             case 2:
                 goalMolecule = Instantiate(moleculeShape2, pos, quaternion);
+                goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
                 break;
             case 3:
                 goalMolecule = Instantiate(moleculeShape3, pos, quaternion);
+                goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
                 break;
             case 4:
                 goalMolecule = Instantiate(moleculeShape4, pos, quaternion);
+                goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
                 break;
         }
-
 
     }
 

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4635181451950543408}
+  - component: {fileID: 3791811482334378654}
   m_Layer: 0
   m_Name: Shape4
   m_TagString: Untagged
@@ -32,12 +33,25 @@ Transform:
   - {fileID: 3599876582894098331}
   - {fileID: 1737174067035075512}
   - {fileID: 3147883508385942104}
+  - {fileID: 2199428836989135385}
   - {fileID: 5121541221811402929}
   - {fileID: 5726212755847399061}
   - {fileID: 4344702861857082497}
-  - {fileID: 2199428836989135385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3791811482334378654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5372363734596192037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc2d8f92f99eeb4a9b491be9d5e66e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moleculeData: {fileID: 0}
 --- !u!1001 &1035536608356925680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8314256150047241558, guid: 541ab1d45407048c8aa30282125a5f79, type: 3}
       propertyPath: m_Name
-      value: QuestionMark (3)
+      value: Q1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -322,7 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8314256150047241558, guid: 541ab1d45407048c8aa30282125a5f79, type: 3}
       propertyPath: m_Name
-      value: QuestionMark (1)
+      value: Q4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -470,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8314256150047241558, guid: 541ab1d45407048c8aa30282125a5f79, type: 3}
       propertyPath: m_Name
-      value: QuestionMark
+      value: Q2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -532,7 +546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8314256150047241558, guid: 541ab1d45407048c8aa30282125a5f79, type: 3}
       propertyPath: m_Name
-      value: QuestionMark (2)
+      value: Q3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
