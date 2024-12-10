@@ -817,7 +817,7 @@ MonoBehaviour:
   chapterManager: {fileID: 0}
   atomPrefab: {fileID: 8314256150047241558, guid: c64b94ef7340f4536bdb5247059290db, type: 3}
   periodicTablePrefab: {fileID: 1019811145091207446, guid: f089a8b015d3d2c45bfba60e242718be, type: 3}
-  periodicTable: {fileID: 1019811145091207446, guid: f089a8b015d3d2c45bfba60e242718be, type: 3
+  periodicTable: {fileID: 1019811145091207446, guid: f089a8b015d3d2c45bfba60e242718be, type: 3}
   gameState: 
 --- !u!4 &1509482252
 Transform:
