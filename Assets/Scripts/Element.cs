@@ -12,6 +12,8 @@ namespace XR_Education_Project {
         private GameManager gameManager;
         private UIManager uiManager;
         private String action = null;
+        private GameObject atomPrefab;
+        private GameObject currentAtom;
         
         [HideInInspector] public ElementData elementData;
 
@@ -19,6 +21,8 @@ namespace XR_Education_Project {
         {
             gameManager = FindObjectOfType<GameManager>();
             uiManager = FindObjectOfType<UIManager>();
+
+            atomPrefab = gameManager.atomPrefab;
         }
 
         void OnMouseDown() // Replace with VR interaction later
@@ -29,8 +33,8 @@ namespace XR_Education_Project {
                     this.OnMainMenu();
                     break;
 
-                case ("Instantiate"):
-                    this.InstantiateElement();
+                case ("Chapter"):
+                    this.InstantiateAtom();
                     break;
 
                 case (null): 
@@ -51,11 +55,29 @@ namespace XR_Education_Project {
             }
         }
 
-        private void InstantiateElement() {
+        private void InstantiateAtom() {
             Vector3 self_pos = gameObject.transform.position;
             Vector3 pos = new Vector3(self_pos.x, self_pos.y, self_pos.z - 1);
+            Quaternion rotation = Quaternion.Euler(0, 90, 0);
 
-            var newElement = Instantiate(gameObject, pos, Quaternion.identity); // TODO: Change to a base prefab to fill with data
+            currentAtom = Instantiate(atomPrefab, pos, rotation); // Instantiate atom gameobject
+
+             // Assign correct texture
+            Renderer atomRenderer = currentAtom.GetComponent<Renderer>();
+            string symbol = elementData.atomicSymbol;
+            Texture newTexture = Resources.Load<Texture>($"Textures/{symbol}");
+            
+            if (newTexture != null)
+            {
+                atomRenderer.material.mainTexture = newTexture;
+            }
+            else
+            {
+                Debug.LogError($"Texture for symbol '{symbol}' not found in Resources/Textures/");
+            }
+
+            // Attach drag and drop script
+            currentAtom.AddComponent<AtomDrag>();
         }
 
         public void SetAction(String action)

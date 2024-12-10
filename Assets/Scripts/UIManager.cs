@@ -20,6 +20,8 @@ namespace XR_Education_Project {
         private Button startChapterButton;
         private Button leaveChapterButton;
 
+        private ElementData currentElementData;
+
         void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
@@ -60,6 +62,8 @@ namespace XR_Education_Project {
 
         public void DisplayElementInfoPanel(ElementData elementData)
         {   
+            currentElementData = elementData;
+
             DisableMenuUI();
 
             // Set game state
@@ -133,11 +137,11 @@ namespace XR_Education_Project {
 
         public void startChapterClicked()
         {
-            Debug.Log("Starting chapter...");
+            Debug.Log($"Starting chapter for {currentElementData.elementName}");
             infoPanel.SetActive(false);
 
             // Set game state
-            gameManager.stateChapter();
+            gameManager.stateChapter(currentElementData);
 
             // Instantiate 
             chapterUI = Instantiate(chapterViewPrefab);
