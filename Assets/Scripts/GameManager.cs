@@ -13,11 +13,14 @@ namespace XR_Education_Project {
         public UIManager uiManager;
         public GameObject elementPrefab;
 
+        public ChapterManager chapterManager;
+
         private GameObject[] elementObjects;
         [HideInInspector] public string gameState;
 
         void Start()
         {
+            chapterManager = FindObjectOfType<ChapterManager>();
             uiManager = FindObjectOfType<UIManager>();
             stateMenu();
         }
@@ -35,9 +38,9 @@ namespace XR_Education_Project {
         public void stateChapter()
         {
             gameState = "chapter";
-            ChapterSystem.StartChapter(test);
+            chapterManager.StartChapter(test);
 
-            ChapterSystem.EndChapter();
+            chapterManager.EndChapter();
 
         }
     }
