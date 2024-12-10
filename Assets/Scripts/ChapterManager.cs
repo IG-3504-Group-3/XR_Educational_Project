@@ -44,10 +44,19 @@ public class ChapterManager: MonoBehaviour
                 goalMoleculesData.Add(molecule);
             }
         }
+        Debug.Log(goalMoleculesData.Count);
     }
 
-    private void SetNextGoal()
+    public void SetNextGoal()
     {
+
+        if (goalMoleculesData.Count == 0)
+        {
+            // TODO: Handle ending of chapter
+            EndChapter();
+            return;
+        }
+
         MoleculeData goalData = (MoleculeData) goalMoleculesData[0];
         goalMoleculesData.RemoveAt(0);
         GameObject goalMolecule;
@@ -60,17 +69,17 @@ public class ChapterManager: MonoBehaviour
             case 2:
                 goalMolecule = Instantiate(moleculeShape2, pos, quaternion);
                 goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
-                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject;
+                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
                 break;
             case 3:
                 goalMolecule = Instantiate(moleculeShape3, pos, quaternion);
                 goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
-                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject;
+                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
                 break;
             case 4:
                 goalMolecule = Instantiate(moleculeShape4, pos, quaternion);
                 goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
-                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject;
+                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
                 break;
         }
 

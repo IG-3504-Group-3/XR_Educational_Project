@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class MoleculeManager : MonoBehaviour
     // Dictionary<AtomicSymbol, GameObject> of atoms in the molecule that haven't been filled
     public Dictionary<string, ArrayList> elementsToFill = new Dictionary<string, ArrayList>();
     public bool isComplete = false;
-    public GameObject chapterManager;
+    public ChapterManager chapterManager;
 
 
     void Start()
@@ -53,7 +54,6 @@ public class MoleculeManager : MonoBehaviour
 
             if (elementsToFill.ContainsKey(other_am.elementData.atomicSymbol))
             {
-                Debug.Log(elementsToFill[other_am.elementData.atomicSymbol]);
                 GameObject toFill = (GameObject) elementsToFill[other_am.elementData.atomicSymbol][0];
                 
                 toFill.GetComponent<AtomManager>().fill();
@@ -67,11 +67,23 @@ public class MoleculeManager : MonoBehaviour
 
     public bool checkCompletion()
     {
-        isComplete = elementsToFill.Count > 0;
+        bool completeTest = true;
+        foreach (var elementIdx in elementsToFill.Keys)
+        {
+            if (elementsToFill[elementIdx].Count != 0)
+            {
+                completeTest = false; 
+                break;
+            }
+        }
+
+        isComplete = completeTest;
         if (isComplete) 
         {
-            // TODO: Let ChapterManager know the molecule is complete
-            Debug.Log("Complete Molecule");
+            // Remove completed molecule
+            Destroy(gameObject);
+            // Move to next goal
+            chapterManager.SetNextGoal();
         }
         return isComplete;
     }
