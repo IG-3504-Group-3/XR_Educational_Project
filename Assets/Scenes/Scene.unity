@@ -571,13 +571,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899471191}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.61, y: 0, z: -11.16}
+  m_LocalRotation: {x: 0, y: 0.5735764, z: 0, w: 0.8191521}
+  m_LocalPosition: {x: 4.5, y: -4.83, z: -7.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 70, z: 0}
 --- !u!114 &899471193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,8 +592,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGoal: {fileID: 0}
   moleculeShape2: {fileID: 5372363734596192037, guid: fe21563affdd64ebf8b2b22ca7daa9e7, type: 3}
-  moleculeShape3: {fileID: 5372363734596192037, guid: 465bd9e8907214758b471a4826269151, type: 3}
-  moleculeShape4: {fileID: 5372363734596192037, guid: a5f36bc54ac94404c91b4133a4465610, type: 3}
+  moleculeShape3: {fileID: 5372363734596192037, guid: cd81fefcbe7784922b5b84dbcb306c26, type: 3}
+  moleculeShape4: {fileID: 5372363734596192037, guid: f54c8c81e87194d6fb78adac2d12dcb7, type: 3}
 --- !u!1 &1271160679
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,10 +814,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 99c95f6a11003430fb10db6516a98bbc, type: 2}
   uiManager: {fileID: 741988363}
   elementPrefab: {fileID: 5168228138890509655, guid: 242b0f38eaa3af34f9da7f58aacf7f7d, type: 3}
-  chapterManager: {fileID: 0}
   atomPrefab: {fileID: 8314256150047241558, guid: c64b94ef7340f4536bdb5247059290db, type: 3}
   periodicTablePrefab: {fileID: 1019811145091207446, guid: f089a8b015d3d2c45bfba60e242718be, type: 3}
   periodicTable: {fileID: 1019811145091207446, guid: f089a8b015d3d2c45bfba60e242718be, type: 3}
+  chapterManager: {fileID: 0}
   gameState: 
 --- !u!4 &1509482252
 Transform:

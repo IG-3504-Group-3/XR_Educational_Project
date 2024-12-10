@@ -15,6 +15,6 @@ MonoBehaviour:
   moleculeName: Water
   numberOfAtoms: 3
   elements:
-  - {fileID: 11400000, guid: afea9717e0be746deac6e9b58a812ad3, type: 2}
   - {fileID: 11400000, guid: f968d0c14dd8849a3ad14b66243332c0, type: 2}
+  - {fileID: 11400000, guid: afea9717e0be746deac6e9b58a812ad3, type: 2}
   - {fileID: 11400000, guid: f968d0c14dd8849a3ad14b66243332c0, type: 2}
