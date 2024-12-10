@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4635181451950543408}
+  - component: {fileID: -86129491559092663}
   - component: {fileID: 1370200666754948379}
   m_Layer: 0
   m_Name: Shape3
@@ -37,6 +38,27 @@ Transform:
   - {fileID: 3778297934253025665}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &-86129491559092663
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5372363734596192037}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1370200666754948379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,6 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moleculeData: {fileID: 0}
+  isComplete: 0
+  chapterManager: {fileID: 0}
 --- !u!1001 &679871682884279212
 PrefabInstance:
   m_ObjectHideFlags: 0

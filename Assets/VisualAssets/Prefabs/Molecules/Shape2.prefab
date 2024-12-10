@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4635181451950543408}
+  - component: {fileID: -5325017494865180827}
   - component: {fileID: 8880776115261254086}
   m_Layer: 0
   m_Name: Shape2
@@ -35,6 +36,27 @@ Transform:
   - {fileID: 3778297934253025665}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &-5325017494865180827
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5372363734596192037}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8880776115261254086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc2d8f92f99eeb4a9b491be9d5e66e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moleculeData: {fileID: 0}
 --- !u!1001 &679871682884279212
 PrefabInstance:
   m_ObjectHideFlags: 0

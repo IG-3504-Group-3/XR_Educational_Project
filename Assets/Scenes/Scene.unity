@@ -718,9 +718,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allMoleculeData:
-  - {fileID: 11400000, guid: 50a993c0312f7114fab4bc45e8b80249, type: 2}
   - {fileID: 11400000, guid: 63848a76ea092c44997bac33eadb7ab6, type: 2}
   - {fileID: 11400000, guid: 0b2c6c5f99e76684397987a40239be42, type: 2}
+  - {fileID: 11400000, guid: 50a993c0312f7114fab4bc45e8b80249, type: 2}
   elementDataArray:
   - {fileID: 11400000, guid: f18b9530a042a4649acf43784395843d, type: 2}
   - {fileID: 11400000, guid: b7dbf64b4efeb4dfd80a25e3c1cec616, type: 2}

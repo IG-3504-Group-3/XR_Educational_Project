@@ -62,19 +62,10 @@ namespace XR_Education_Project {
 
             currentAtom = Instantiate(atomPrefab, pos, rotation); // Instantiate atom gameobject
 
-             // Assign correct texture
-            Renderer atomRenderer = currentAtom.GetComponent<Renderer>();
-            string symbol = elementData.atomicSymbol;
-            Texture newTexture = Resources.Load<Texture>($"Textures/{symbol}");
-            
-            if (newTexture != null)
-            {
-                atomRenderer.material.mainTexture = newTexture;
-            }
-            else
-            {
-                Debug.LogError($"Texture for symbol '{symbol}' not found in Resources/Textures/");
-            }
+            // Assign correct texture
+            AtomManager am = currentAtom.GetComponent<AtomManager>();
+            am.elementData = elementData;
+            am.fill();
 
             // Attach drag and drop script
             currentAtom.AddComponent<AtomDrag>();

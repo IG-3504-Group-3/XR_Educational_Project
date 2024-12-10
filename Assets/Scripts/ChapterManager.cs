@@ -55,21 +55,22 @@ public class ChapterManager: MonoBehaviour
         Vector3 pos = gameObject.transform.position;
         Quaternion quaternion = gameObject.transform.rotation;
 
-        // TODO: Set the molecule data
-
         switch (goalData.numberOfAtoms)
         {
             case 2:
                 goalMolecule = Instantiate(moleculeShape2, pos, quaternion);
                 goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
+                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject;
                 break;
             case 3:
                 goalMolecule = Instantiate(moleculeShape3, pos, quaternion);
                 goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
+                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject;
                 break;
             case 4:
                 goalMolecule = Instantiate(moleculeShape4, pos, quaternion);
                 goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
+                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject;
                 break;
         }
 
