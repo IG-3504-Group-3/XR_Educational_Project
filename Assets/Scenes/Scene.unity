@@ -764,10 +764,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b299817dedb249cc8c4b5b3267812d3, type: 2}
   - {fileID: 11400000, guid: 88652fd00eede4046b13b2c60c193651, type: 2}
   - {fileID: 11400000, guid: 99c95f6a11003430fb10db6516a98bbc, type: 2}
-  test: {fileID: 11400000, guid: f968d0c14dd8849a3ad14b66243332c0, type: 2}
   uiManager: {fileID: 741988363}
   elementPrefab: {fileID: 5168228138890509655, guid: 242b0f38eaa3af34f9da7f58aacf7f7d, type: 3}
   atomPrefab: {fileID: 8314256150047241558, guid: c64b94ef7340f4536bdb5247059290db, type: 3}
+  periodicTablePrefab: {fileID: 1019811145091207446, guid: f089a8b015d3d2c45bfba60e242718be, type: 3}
+  periodicTable: {fileID: 1019811145091207446, guid: f089a8b015d3d2c45bfba60e242718be, type: 3}
   gameState: 
 --- !u!4 &1509482252
 Transform:
@@ -1091,7 +1092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1019811145091207446, guid: f089a8b015d3d2c45bfba60e242718be, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3596040306140158296, guid: f089a8b015d3d2c45bfba60e242718be, type: 3}
       propertyPath: m_LocalPosition.x

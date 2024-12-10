@@ -98,7 +98,7 @@ namespace XR_Education_Project {
                         newElement.transform.parent = gameObject.transform;
 
                         // Set the element action
-                        // newElement.GetComponent<Element>().SetAction("MainMenu");
+                        newElement.GetComponent<Element>().SetAction("MainMenu");
                         elementDict[(rowIdx, colIdx)] = newElement;
                     }
                 }
@@ -126,7 +126,7 @@ namespace XR_Education_Project {
             }
         }
 
-        private void SetElementActions(string action)
+        public void SetElementActions(string action)
         {
             foreach (GameObject element in elementDict.Values) {
                 element.GetComponent<Element>().SetAction(action);

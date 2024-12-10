@@ -11,6 +11,8 @@ namespace XR_Education_Project {
         public UIManager uiManager;
         public GameObject elementPrefab;
         public GameObject atomPrefab;
+        public GameObject periodicTablePrefab;
+        [HideInInspector] public  GameObject periodicTable;
 
         private GameObject[] elementObjects;
         [HideInInspector] public string gameState;
@@ -18,6 +20,7 @@ namespace XR_Education_Project {
         void Start()
         {
             uiManager = FindObjectOfType<UIManager>();
+            periodicTable = Instantiate(periodicTablePrefab);
             stateMenu();
         }
 
@@ -34,6 +37,7 @@ namespace XR_Education_Project {
         public void stateChapter(ElementData element)
         {
             gameState = "chapter";
+            periodicTable.GetComponent<PeriodicTable>().SetElementActions("Chapter");
             ChapterSystem.StartChapter(element);
 
             ChapterSystem.EndChapter();
