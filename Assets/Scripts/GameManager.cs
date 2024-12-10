@@ -43,8 +43,6 @@ namespace XR_Education_Project {
             periodicTable.GetComponent<PeriodicTable>().SetElementActions("Chapter");
             chapterManager.StartChapter(element);
 
-            chapterManager.EndChapter();
-
         }
     }
 }
