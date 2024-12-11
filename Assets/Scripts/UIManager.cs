@@ -10,15 +10,18 @@ namespace XR_Education_Project {
         public GameObject elementInfoPanelPrefab;
         public GameObject chapterViewPrefab;
         public GameObject mainMenu;
+        public GameObject endChapterPrefab;
 
         private GameManager gameManager;
 
         private GameObject infoPanel;
         private GameObject chapterUI;
+        private GameObject endChapterUI;
 
         private Button backToMenuButton;
         private Button startChapterButton;
         private Button leaveChapterButton;
+        private Button finishChapterButton;
 
         private ElementData currentElementData;
 
@@ -159,11 +162,11 @@ namespace XR_Education_Project {
             leaveChapterButton = chapterUI.transform.Find("Canvas/exitChapter")?.GetComponent<Button>();
             if (leaveChapterButton != null)
             {
-                leaveChapterButton.onClick.AddListener(leaveChapterCliked);
+                leaveChapterButton.onClick.AddListener(leaveChapterClicked);
             }
         }
 
-        public void leaveChapterCliked()
+        private void leaveChapterClicked()
         {
             Destroy(chapterUI);
             infoPanel.SetActive(true);
@@ -171,6 +174,34 @@ namespace XR_Education_Project {
 
             // Set game state
             gameManager.stateInfo();
+        }
+
+        public void displayEndChapter()
+        {
+            // Set game state
+            gameManager.stateEndChapter();
+
+            Destroy(chapterUI);
+            endChapterUI = Instantiate(endChapterPrefab);
+            endChapterUI.SetActive(true);
+
+            //Get finish chapter button
+            finishChapterButton = endChapterUI.transform.Find("Canvas/summaryPanel/backButton")?.GetComponent<Button>();
+            if (finishChapterButton != null)
+            {
+                Debug.Log("Finish Chapter Button Found.");
+                finishChapterButton.onClick.AddListener(finishChapterClicked);
+            }
+        }
+
+        private void finishChapterClicked()
+        {
+            Destroy(endChapterUI);
+            Destroy(infoPanel);
+
+            EnableMenuUI();
+            // Set game state
+            gameManager.stateMenu();
         }
 
     }

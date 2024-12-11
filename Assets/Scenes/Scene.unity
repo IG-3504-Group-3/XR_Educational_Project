@@ -531,6 +531,7 @@ MonoBehaviour:
   elementInfoPanelPrefab: {fileID: 1437405991444353345, guid: fb384956257aa432fa539f3d9c835574, type: 3}
   chapterViewPrefab: {fileID: 8628927541956586861, guid: 79923a90e5fa84ac5a9c9bd47ae3cda1, type: 3}
   mainMenu: {fileID: 389525317}
+  endChapterPrefab: {fileID: 7256926515692868846, guid: ef02ef1d74bf645c8a8a4489fab9b676, type: 3}
 --- !u!4 &741988364
 Transform:
   m_ObjectHideFlags: 0
