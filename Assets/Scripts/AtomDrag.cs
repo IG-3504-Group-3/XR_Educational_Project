@@ -6,8 +6,9 @@ namespace XR_Education_Project{
     public class AtomDrag : MonoBehaviour
     {
         private Camera mainCamera;
+        private GameObject draggingObject;
         private bool isDragging = false;
-        private Vector3 dragOffset;
+
         private float smoothSpeed = 15f;
 
         private void Start()
@@ -28,7 +29,7 @@ namespace XR_Education_Project{
                     if (hit.collider.gameObject == gameObject) // If atom clicked
                     {
                         isDragging = true;
-                        //dragOffset = transform.position - hit.point;
+                        draggingObject = hit.collider.gameObject;
                     }
                 }
             }
@@ -40,15 +41,15 @@ namespace XR_Education_Project{
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    //transform.position = new Vector3(hit.point.x, transform.position.y, hit.point.z); // Update position
                     Vector3 targetPosition = hit.point;
-                    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smoothSpeed);
+                    draggingObject.transform.position = Vector3.Lerp(draggingObject.transform.position, targetPosition, Time.deltaTime * smoothSpeed);
                 }
             }
 
             if (Input.GetMouseButtonUp(0)) // Release to stop dragging
             {
                 isDragging = false;
+                draggingObject = null;
             }
             
         }

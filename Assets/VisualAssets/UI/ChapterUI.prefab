@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 672592356327643565}
   - component: {fileID: 3376965054902474903}
   - component: {fileID: 8148984027072724594}
+  - component: {fileID: 7553887012678947542}
+  - component: {fileID: 8361034141839274265}
   m_Layer: 5
   m_Name: trash
-  m_TagString: Untagged
+  m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -737.49994, y: 0}
+  m_AnchoredPosition: {x: -737.5, y: 0}
   m_SizeDelta: {x: -1625, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3376965054902474903
@@ -76,6 +78,39 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7553887012678947542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32218104276834056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295a5ad0621c2455cac426571189f222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &8361034141839274265
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32218104276834056}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 290.40933, y: 196.79117, z: 422.63467}
+  m_Center: {x: -0.7231872, y: 5.6818013, z: -185.76642}
 --- !u!1 &1101351848557166901
 GameObject:
   m_ObjectHideFlags: 0
