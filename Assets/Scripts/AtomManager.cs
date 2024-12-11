@@ -36,6 +36,14 @@ public class AtomManager : MonoBehaviour
     }
 
     public static void  AddAtom(GameObject newAtom) {
+        Collider newAtomCollider = newAtom.GetComponent<Collider>();
+        
+        foreach (GameObject existingAtom in instantiatedAtoms)
+        {
+            Collider existingAtomCollider = existingAtom.GetComponent<Collider>();
+            Physics.IgnoreCollision(newAtomCollider, existingAtomCollider);
+        }
+
         instantiatedAtoms.Add(newAtom);
         Debug.Log($"Atom created. Total Atoms: {instantiatedAtoms.Count}");
     }
@@ -44,8 +52,15 @@ public class AtomManager : MonoBehaviour
     {
         if (instantiatedAtoms.Contains(currentAtom))
         {
-            instantiatedAtoms.Remove(currentAtom);
-            GameObject.Destroy(currentAtom);
+            for (int i = instantiatedAtoms.Count - 1; i >= 0; i--)
+            {
+                if (instantiatedAtoms[i] == currentAtom)
+                {
+                    instantiatedAtoms.RemoveAt(i);
+                    GameObject.Destroy(currentAtom);
+                    break;
+                }
+            }
         }
     }
 
