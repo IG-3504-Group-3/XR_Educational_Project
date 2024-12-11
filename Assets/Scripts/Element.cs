@@ -12,8 +12,10 @@ namespace XR_Education_Project {
         private GameManager gameManager;
         private UIManager uiManager;
         private String action = null;
+
         private GameObject atomPrefab;
         private GameObject currentAtom;
+        private static GameObject atomContainer;
         
         [HideInInspector] public ElementData elementData;
 
@@ -56,16 +58,23 @@ namespace XR_Education_Project {
         }
 
         private void InstantiateAtom() {
+            if (atomContainer == null)
+            {
+                atomContainer = new GameObject("AtomContainer");
+            }
             Vector3 self_pos = gameObject.transform.position;
             Vector3 pos = new Vector3(self_pos.x, self_pos.y, self_pos.z - 1);
             Quaternion rotation = Quaternion.Euler(0, 90, 0);
 
             currentAtom = Instantiate(atomPrefab, pos, rotation); // Instantiate atom gameobject
+            currentAtom.transform.SetParent(atomContainer.transform);
+            currentAtom.tag = "Atom";
 
             // Assign correct texture
             AtomManager am = currentAtom.GetComponent<AtomManager>();
             am.elementData = elementData;
             am.fill();
+            AtomManager.AddAtom(currentAtom);
 
             // Attach drag and drop script
             currentAtom.AddComponent<AtomDrag>();

@@ -59,7 +59,7 @@ public class MoleculeManager : MonoBehaviour
                 toFill.GetComponent<AtomManager>().fill();
 
                 elementsToFill[other_am.elementData.atomicSymbol].RemoveAt(0);
-                Destroy(other.gameObject);
+                AtomManager.RemoveAtom(other.gameObject);
                 checkCompletion();
             }
         }
@@ -82,6 +82,8 @@ public class MoleculeManager : MonoBehaviour
         {
             // Remove completed molecule
             Destroy(gameObject);
+            // Remove any stray atoms
+            AtomManager.RemoveAllAtoms();
             // Move to next goal
             chapterManager.SetNextGoal();
         }

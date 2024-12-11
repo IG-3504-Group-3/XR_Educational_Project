@@ -35,6 +35,7 @@ namespace XR_Education_Project {
         public void stateInfo()
         {
             gameState = "info";
+            periodicTable.GetComponent<PeriodicTable>().SetElementActions("MainMenu");
         }
 
         public void stateChapter(ElementData element)
