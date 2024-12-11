@@ -6,6 +6,7 @@ using XR_Education_Project;
 
 public class AtomManager : MonoBehaviour
 {
+    private static List<GameObject> instantiatedAtoms = new List<GameObject>();
     public ElementData elementData;
     public bool isFilled = false;
 
@@ -34,5 +35,43 @@ public class AtomManager : MonoBehaviour
         isFilled = true;
     }
 
+    public static void  AddAtom(GameObject newAtom) {
+        Collider newAtomCollider = newAtom.GetComponent<Collider>();
+        
+        foreach (GameObject existingAtom in instantiatedAtoms)
+        {
+            Collider existingAtomCollider = existingAtom.GetComponent<Collider>();
+            Physics.IgnoreCollision(newAtomCollider, existingAtomCollider);
+        }
+
+        instantiatedAtoms.Add(newAtom);
+        Debug.Log($"Atom created. Total Atoms: {instantiatedAtoms.Count}");
+    }
+
+    public static void RemoveAtom(GameObject currentAtom)
+    {
+        if (instantiatedAtoms.Contains(currentAtom))
+        {
+            for (int i = instantiatedAtoms.Count - 1; i >= 0; i--)
+            {
+                if (instantiatedAtoms[i] == currentAtom)
+                {
+                    instantiatedAtoms.RemoveAt(i);
+                    GameObject.Destroy(currentAtom);
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void RemoveAllAtoms()
+    {
+        for (int i = instantiatedAtoms.Count - 1; i >= 0; i--)
+        {
+            GameObject atom = instantiatedAtoms[i];
+            instantiatedAtoms.RemoveAt(i); // Remove atom by index
+            GameObject.Destroy(atom); // Destroy the atom
+        }
+    }
 
 }

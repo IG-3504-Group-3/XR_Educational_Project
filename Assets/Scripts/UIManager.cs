@@ -167,6 +167,7 @@ namespace XR_Education_Project {
         {
             Destroy(chapterUI);
             infoPanel.SetActive(true);
+            AtomManager.RemoveAllAtoms();
 
             // Set game state
             gameManager.stateInfo();

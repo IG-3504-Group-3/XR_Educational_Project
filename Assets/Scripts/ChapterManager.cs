@@ -94,6 +94,9 @@ public class ChapterManager: MonoBehaviour
     {
         startTime = null;
         goalMoleculesData.Clear();
+
+        // Remove any stray atoms
+        AtomManager.RemoveAllAtoms();
     }
 
     
