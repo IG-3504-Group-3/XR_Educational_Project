@@ -10,7 +10,9 @@ public class ChapterManager: MonoBehaviour
     public float ?startTime;
     public GameObject currentGoal;
     public ArrayList completedMolecules;
+
     private GameManager gameManager;
+    private UIManager uiManager;
 
     public GameObject moleculeShape2;
     public GameObject moleculeShape3;
@@ -21,6 +23,10 @@ public class ChapterManager: MonoBehaviour
         if (gameManager == null)
         {
             gameManager = FindObjectOfType<GameManager>();
+        }
+        if (uiManager == null)
+        {
+            uiManager = FindObjectOfType<UIManager>();
         }
     }
 
@@ -97,6 +103,7 @@ public class ChapterManager: MonoBehaviour
 
         // Remove any stray atoms
         AtomManager.RemoveAllAtoms();
+        uiManager.displayEndChapter();
     }
 
     

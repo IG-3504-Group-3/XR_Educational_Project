@@ -30,6 +30,7 @@ namespace XR_Education_Project {
         public void stateMenu()
         {
             gameState = "menu";
+            periodicTable.GetComponent<PeriodicTable>().SetElementActions("MainMenu");
         }
 
         public void stateInfo()
@@ -43,7 +44,12 @@ namespace XR_Education_Project {
             gameState = "chapter";
             periodicTable.GetComponent<PeriodicTable>().SetElementActions("Chapter");
             chapterManager.StartChapter(element);
+        }
 
+        public void stateEndChapter()
+        {
+            gameState = "endChapter";
+            periodicTable.GetComponent<PeriodicTable>().SetElementActions("MainMenu");
         }
     }
 }
