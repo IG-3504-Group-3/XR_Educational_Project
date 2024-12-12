@@ -13,6 +13,7 @@ namespace XR_Education_Project {
         public GameObject endChapterPrefab;
 
         private GameManager gameManager;
+        private ChapterManager chapterManager;
 
         private GameObject infoPanel;
         private GameObject chapterUI;
@@ -28,6 +29,7 @@ namespace XR_Education_Project {
         void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
+            chapterManager = FindObjectOfType<ChapterManager>();
         }
 
         public void EnableMenuUI()
@@ -66,6 +68,7 @@ namespace XR_Education_Project {
         public void DisplayElementInfoPanel(ElementData elementData)
         {   
             currentElementData = elementData;
+            string bestTime = FormatTime(130.00f); // TODO: add best time 
 
             DisableMenuUI();
 
@@ -88,6 +91,7 @@ namespace XR_Education_Project {
              // Dictionary to map textField names to elementData properties
             Dictionary<string, string> elementInfoMap = new Dictionary<string, string>
             {
+                { "recordTime", $"Best Record (mm:ss): {bestTime}"},
                 { "atomicSymbol", elementData.atomicSymbol },
                 { "atomicNumber", elementData.atomicNumber.ToString() },
                 { "atomicMass", elementData.atomicMass.ToString() },
@@ -171,6 +175,7 @@ namespace XR_Education_Project {
             Destroy(chapterUI);
             infoPanel.SetActive(true);
             AtomManager.RemoveAllAtoms();
+            chapterManager.RemoveMolecule();
 
             // Set game state
             gameManager.stateInfo();
