@@ -9,7 +9,6 @@ namespace XR_Education_Project {
     {
         private ArrayList goalMoleculesData;
         public float ?startTime;
-        public GameObject currentGoal;
         public ArrayList completedMolecules;
 
         private GameManager gameManager;
@@ -20,6 +19,8 @@ namespace XR_Education_Project {
         public GameObject moleculeShape2;
         public GameObject moleculeShape3;
         public GameObject moleculeShape4;
+
+        private GameObject goalMolecule;
 
         void Start()
         {
@@ -78,7 +79,6 @@ namespace XR_Education_Project {
 
             MoleculeData goalData = (MoleculeData) goalMoleculesData[0];
             goalMoleculesData.RemoveAt(0);
-            GameObject goalMolecule;
 
             Vector3 pos = gameObject.transform.position;
             Quaternion quaternion = gameObject.transform.rotation;
@@ -129,6 +129,11 @@ namespace XR_Education_Project {
             // Remove any stray atoms
             AtomManager.RemoveAllAtoms();
             gameManager.stateEndChapter(finalTime);
+        }
+
+        public void RemoveMolecule() 
+        {
+            Destroy(goalMolecule);
         }
 
     }
