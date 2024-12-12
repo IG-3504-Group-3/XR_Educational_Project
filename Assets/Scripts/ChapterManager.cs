@@ -4,108 +4,132 @@ using Unity.VisualScripting;
 using UnityEngine;
 using XR_Education_Project;
 
-public class ChapterManager: MonoBehaviour
-{
-    private ArrayList goalMoleculesData;
-    public float ?startTime;
-    public GameObject currentGoal;
-    public ArrayList completedMolecules;
-
-    private GameManager gameManager;
-    private UIManager uiManager;
-
-    public GameObject moleculeShape2;
-    public GameObject moleculeShape3;
-    public GameObject moleculeShape4;
-
-    void Start()
+namespace XR_Education_Project {
+    public class ChapterManager: MonoBehaviour
     {
-        if (gameManager == null)
-        {
-            gameManager = FindObjectOfType<GameManager>();
-        }
-        if (uiManager == null)
-        {
-            uiManager = FindObjectOfType<UIManager>();
-        }
-    }
+        private ArrayList goalMoleculesData;
+        public float ?startTime;
+        public GameObject currentGoal;
+        public ArrayList completedMolecules;
 
-    public void StartChapter(ElementData element) // Initializes the chapter
-    {
-        goalMoleculesData = new ArrayList();
-        completedMolecules = new ArrayList();
-        SetGoalMoleculesData(element);
-        SetNextGoal();
-        startTime = Time.time;
+        private GameManager gameManager;
+        private UIManager uiManager;
+        private float finalTime;
+        private int totalGoalMolecules;
 
-    }
+        public GameObject moleculeShape2;
+        public GameObject moleculeShape3;
+        public GameObject moleculeShape4;
 
-    public void SetGoalMoleculesData(ElementData element) // Adds all molecules that contain the element to the goal molecules of the chapter
-    {
-        var molecules = gameManager.allMoleculeData;
-        foreach (var molecule in molecules)
+        void Start()
         {
-            if (molecule.elements.Contains(element))
+            if (gameManager == null)
             {
-                goalMoleculesData.Add(molecule);
+                gameManager = FindObjectOfType<GameManager>();
+            }
+            if (uiManager == null)
+            {
+                uiManager = FindObjectOfType<UIManager>();
             }
         }
-        Debug.Log(goalMoleculesData.Count);
-    }
 
-    public void SetNextGoal()
-    {
-
-        if (goalMoleculesData.Count == 0)
+        void Update()
         {
-            // TODO: Handle ending of chapter
-            EndChapter();
-            return;
+            if (gameManager.gameState == "chapter")
+            {
+                float currentTime = GetScore();
+                uiManager.setChapterTime(currentTime);
+            }
         }
 
-        MoleculeData goalData = (MoleculeData) goalMoleculesData[0];
-        goalMoleculesData.RemoveAt(0);
-        GameObject goalMolecule;
-
-        Vector3 pos = gameObject.transform.position;
-        Quaternion quaternion = gameObject.transform.rotation;
-
-        switch (goalData.numberOfAtoms)
+        public void StartChapter(ElementData element) // Initializes the chapter
         {
-            case 2:
-                goalMolecule = Instantiate(moleculeShape2, pos, quaternion);
-                goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
-                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
-                break;
-            case 3:
-                goalMolecule = Instantiate(moleculeShape3, pos, quaternion);
-                goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
-                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
-                break;
-            case 4:
-                goalMolecule = Instantiate(moleculeShape4, pos, quaternion);
-                goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
-                goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
-                break;
+            goalMoleculesData = new ArrayList();
+            completedMolecules = new ArrayList();
+            SetGoalMoleculesData(element);
+            startTime = Time.time;
+            Debug.Log($"Setting startTime to: {Time.time}");
+            SetNextGoal();
+        }
+
+        public void SetGoalMoleculesData(ElementData element) // Adds all molecules that contain the element to the goal molecules of the chapter
+        {
+            var molecules = gameManager.allMoleculeData;
+            foreach (var molecule in molecules)
+            {
+                if (molecule.elements.Contains(element))
+                {
+                    goalMoleculesData.Add(molecule);
+                }
+            }
+            Debug.Log($"Goal Molecules to complete: {goalMoleculesData.Count}");
+            totalGoalMolecules = goalMoleculesData.Count;
+        }
+
+        public void SetNextGoal()
+        {
+
+            if (goalMoleculesData.Count == 0)
+            {
+                // TODO: Handle ending of chapter
+                EndChapter();
+                return;
+            }
+
+            MoleculeData goalData = (MoleculeData) goalMoleculesData[0];
+            goalMoleculesData.RemoveAt(0);
+            GameObject goalMolecule;
+
+            Vector3 pos = gameObject.transform.position;
+            Quaternion quaternion = gameObject.transform.rotation;
+
+            uiManager.setMoleculeData(goalData);
+            uiManager.setChapterProgress(totalGoalMolecules - goalMoleculesData.Count, totalGoalMolecules);
+
+            switch (goalData.numberOfAtoms)
+            {
+                case 2:
+                    goalMolecule = Instantiate(moleculeShape2, pos, quaternion);
+                    goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
+                    goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
+                    break;
+                case 3:
+                    goalMolecule = Instantiate(moleculeShape3, pos, quaternion);
+                    goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
+                    goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
+                    break;
+                case 4:
+                    goalMolecule = Instantiate(moleculeShape4, pos, quaternion);
+                    goalMolecule.GetComponent<MoleculeManager>().moleculeData = goalData;
+                    goalMolecule.GetComponent<MoleculeManager>().chapterManager = gameObject.GetComponent<ChapterManager>();
+                    break;
+            }
+
+        }
+
+        public float GetScore() // Returns the time since the start of the chapter
+        {
+            if (startTime.HasValue)
+            {
+                return Time.time - startTime.Value;
+            }
+            else
+            {
+                Debug.Log("startTime is null.");
+                return 0f; 
+            }
+        }
+
+        public void EndChapter() // Ends the chapter
+        {
+            finalTime = GetScore();
+            startTime = null;
+            goalMoleculesData.Clear();
+
+            // Remove any stray atoms
+            AtomManager.RemoveAllAtoms();
+            gameManager.stateEndChapter(finalTime);
         }
 
     }
-
-    public float GetScore() // Returns the time since the start of the chapter
-    {
-        return Time.time - (float) startTime;
-    }
-
-    public void EndChapter() // Ends the chapter
-    {
-        startTime = null;
-        goalMoleculesData.Clear();
-
-        // Remove any stray atoms
-        AtomManager.RemoveAllAtoms();
-        uiManager.displayEndChapter();
-    }
-
-    
-
 }

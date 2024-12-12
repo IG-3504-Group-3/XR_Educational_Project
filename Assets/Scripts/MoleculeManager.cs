@@ -12,13 +12,20 @@ public class MoleculeManager : MonoBehaviour
     public Dictionary<string, ArrayList> elementsToFill = new Dictionary<string, ArrayList>();
     public bool isComplete = false;
     public ChapterManager chapterManager;
+    public UIManager uiManager; 
 
 
     void Start()
     {
+        if (uiManager == null)
+        {
+            uiManager = FindObjectOfType<UIManager>();
+        }
+
         int atomIdx = 0; // Because children can also be cylinders we have an idx that reference just atoms
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
+
             Transform go = gameObject.transform.GetChild(i); // Gets the children of the molecule prefab (cylinders and QuestionMarks)
             if (go.name.Contains("Q")) // All atom prefab names begin with Q
             {

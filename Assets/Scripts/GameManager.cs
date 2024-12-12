@@ -41,15 +41,16 @@ namespace XR_Education_Project {
 
         public void stateChapter(ElementData element)
         {
+            chapterManager.StartChapter(element);
             gameState = "chapter";
             periodicTable.GetComponent<PeriodicTable>().SetElementActions("Chapter");
-            chapterManager.StartChapter(element);
         }
 
-        public void stateEndChapter()
+        public void stateEndChapter(float finalTime)
         {
             gameState = "endChapter";
             periodicTable.GetComponent<PeriodicTable>().SetElementActions("MainMenu");
+            uiManager.displayEndChapter(finalTime);
         }
     }
 }
