@@ -13,6 +13,7 @@ namespace XR_Education_Project {
         public GameObject endChapterPrefab;
 
         private GameManager gameManager;
+        private ChapterManager chapterManager;
 
         private GameObject infoPanel;
         private GameObject chapterUI;
@@ -28,6 +29,7 @@ namespace XR_Education_Project {
         void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
+            chapterManager = FindObjectOfType<ChapterManager>();
         }
 
         public void EnableMenuUI()
@@ -66,6 +68,7 @@ namespace XR_Education_Project {
         public void DisplayElementInfoPanel(ElementData elementData)
         {   
             currentElementData = elementData;
+            string bestTime = FormatTime(130.00f); // TODO: add best time 
 
             DisableMenuUI();
 
@@ -88,6 +91,7 @@ namespace XR_Education_Project {
              // Dictionary to map textField names to elementData properties
             Dictionary<string, string> elementInfoMap = new Dictionary<string, string>
             {
+                { "recordTime", $"Best Record (mm:ss): {bestTime}"},
                 { "atomicSymbol", elementData.atomicSymbol },
                 { "atomicNumber", elementData.atomicNumber.ToString() },
                 { "atomicMass", elementData.atomicMass.ToString() },
@@ -143,9 +147,6 @@ namespace XR_Education_Project {
             Debug.Log($"Starting chapter for {currentElementData.elementName}");
             infoPanel.SetActive(false);
 
-            // Set game state
-            gameManager.stateChapter(currentElementData);
-
             // Instantiate 
             chapterUI = Instantiate(chapterViewPrefab);
 
@@ -157,6 +158,9 @@ namespace XR_Education_Project {
             }
 
             chapterUI.SetActive(true);
+
+            // Set game state
+            gameManager.stateChapter(currentElementData);
 
             // Get exit button
             leaveChapterButton = chapterUI.transform.Find("Canvas/exitChapter")?.GetComponent<Button>();
@@ -171,19 +175,31 @@ namespace XR_Education_Project {
             Destroy(chapterUI);
             infoPanel.SetActive(true);
             AtomManager.RemoveAllAtoms();
+            chapterManager.RemoveMolecule();
 
             // Set game state
             gameManager.stateInfo();
         }
 
-        public void displayEndChapter()
+        public void displayEndChapter(float currentTime) //TODO: Add best time 
         {
-            // Set game state
-            gameManager.stateEndChapter();
-
             Destroy(chapterUI);
             endChapterUI = Instantiate(endChapterPrefab);
             endChapterUI.SetActive(true);
+
+            TextMeshProUGUI summaryCurrentTime = endChapterUI.transform.Find("Canvas/summaryPanel/currentScore")?.GetComponent<TextMeshProUGUI>();
+            if (summaryCurrentTime != null)
+            {
+                string formattedTime = FormatTime(currentTime);
+                summaryCurrentTime.text = formattedTime;
+            }
+
+            TextMeshProUGUI summaryBestTime = endChapterUI.transform.Find("Canvas/summaryPanel/bestScore")?.GetComponent<TextMeshProUGUI>();
+            if (summaryBestTime != null)
+            {
+                string formattedTime = FormatTime(currentTime); //TODO: Change to best time
+                summaryBestTime.text = formattedTime;
+            }
 
             //Get finish chapter button
             finishChapterButton = endChapterUI.transform.Find("Canvas/summaryPanel/backButton")?.GetComponent<Button>();
@@ -202,6 +218,41 @@ namespace XR_Education_Project {
             EnableMenuUI();
             // Set game state
             gameManager.stateMenu();
+        }
+
+        public void setMoleculeData(MoleculeData moleculeData)
+        {
+            TextMeshProUGUI moleculeName = chapterUI.transform.Find("Canvas/chapterBar/moleculeName").GetComponent<TextMeshProUGUI>();
+            if (moleculeName != null)
+            {
+                moleculeName.text = moleculeData.moleculeName;
+            }
+        }
+
+        public void setChapterProgress(int curr, int total)
+        {
+            TextMeshProUGUI chapterProgress = chapterUI.transform.Find("Canvas/chapterBar/progress").GetComponent<TextMeshProUGUI>();
+            if (chapterProgress != null)
+            {
+            chapterProgress.text = $"Progress: {curr}/{total}";
+            }
+        }
+
+        public void setChapterTime(float time)
+        {
+            TextMeshProUGUI chapterTimer = chapterUI.transform.Find("Canvas/chapterBar/timer")?.GetComponent<TextMeshProUGUI>();
+            if (chapterTimer != null)
+            {
+                string formattedTime = FormatTime(time);
+                chapterTimer.text = formattedTime;
+            }
+        }
+
+        public string FormatTime(float time)
+        {
+            int minutes = Mathf.FloorToInt(time / 60);  // Get minutes
+            int seconds = Mathf.FloorToInt(time % 60); // Get remaining seconds
+            return string.Format("{0}:{1:D2}", minutes, seconds); // Format as mm:ss
         }
 
     }
