@@ -5,6 +5,7 @@ using UnityEditor;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace XR_Education_Project {
     public class Element : MonoBehaviour
@@ -23,11 +24,12 @@ namespace XR_Education_Project {
         {
             gameManager = FindObjectOfType<GameManager>();
             uiManager = FindObjectOfType<UIManager>();
-
             atomPrefab = gameManager.atomPrefab;
+
+            gameObject.GetComponent<XRBaseInteractable>().interactionManager = gameManager.interactionManager.GetComponent<XRInteractionManager>();
         }
 
-        void OnMouseDown() // Replace with VR interaction later
+        void onClick() // Replace with VR interaction later
         {
             switch (action)
             {

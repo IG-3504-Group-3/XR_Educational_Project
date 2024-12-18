@@ -19,6 +19,8 @@ namespace XR_Education_Project {
         private GameObject[] elementObjects;
         [HideInInspector] public string gameState;
 
+        public GameObject interactionManager;
+
         void Start()
         {
             chapterManager = FindObjectOfType<ChapterManager>();
