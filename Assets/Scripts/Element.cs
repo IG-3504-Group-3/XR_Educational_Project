@@ -20,16 +20,23 @@ namespace XR_Education_Project {
         
         [HideInInspector] public ElementData elementData;
 
+        private XRSimpleInteractable interactable;
+
         void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
             uiManager = FindObjectOfType<UIManager>();
             atomPrefab = gameManager.atomPrefab;
 
-            gameObject.GetComponent<XRBaseInteractable>().interactionManager = gameManager.interactionManager.GetComponent<XRInteractionManager>();
+            interactable = gameObject.GetComponent<XRSimpleInteractable>();
+            if (interactable != null)
+            {
+                interactable.interactionManager = gameManager.interactionManager.GetComponent<XRInteractionManager>();
+                interactable.selectEntered.AddListener(OnRaycastClick);
+            }
         }
 
-        void onClick() // Replace with VR interaction later
+        private void OnRaycastClick(SelectEnterEventArgs args)
         {
             switch (action)
             {
