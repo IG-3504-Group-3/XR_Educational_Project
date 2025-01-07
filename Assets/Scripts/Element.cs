@@ -5,6 +5,7 @@ using UnityEditor;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace XR_Education_Project {
     public class Element : MonoBehaviour
@@ -19,15 +20,23 @@ namespace XR_Education_Project {
         
         [HideInInspector] public ElementData elementData;
 
+        private XRSimpleInteractable interactable;
+
         void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
             uiManager = FindObjectOfType<UIManager>();
-
             atomPrefab = gameManager.atomPrefab;
+
+            interactable = gameObject.GetComponent<XRSimpleInteractable>();
+            if (interactable != null)
+            {
+                interactable.interactionManager = gameManager.interactionManager.GetComponent<XRInteractionManager>();
+                interactable.selectEntered.AddListener(OnRaycastClick);
+            }
         }
 
-        void OnMouseDown() // Replace with VR interaction later
+        private void OnRaycastClick(SelectEnterEventArgs args)
         {
             switch (action)
             {
