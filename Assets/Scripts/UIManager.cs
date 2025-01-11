@@ -240,12 +240,15 @@ namespace XR_Education_Project {
 
         public void setChapterTime(float time)
         {
-            TextMeshProUGUI chapterTimer = chapterUI.transform.Find("Canvas/chapterBar/timer")?.GetComponent<TextMeshProUGUI>();
-            if (chapterTimer != null)
-            {
-                string formattedTime = FormatTime(time);
-                chapterTimer.text = formattedTime;
+            if (chapterUI != null){
+                TextMeshProUGUI chapterTimer = chapterUI.transform.Find("Canvas/chapterBar/timer")?.GetComponent<TextMeshProUGUI>();
+                if (chapterTimer != null)
+                {
+                    string formattedTime = FormatTime(time);
+                    chapterTimer.text = formattedTime;
+                }
             }
+        
         }
 
         public string FormatTime(float time)
