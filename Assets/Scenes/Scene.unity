@@ -1073,6 +1073,7 @@ MonoBehaviour:
   chapterManager: {fileID: 0}
   gameState: 
   interactionManager: {fileID: 691166273}
+  rayInteractor: {fileID: 0}
 --- !u!4 &1509482252
 Transform:
   m_ObjectHideFlags: 0
