@@ -20,6 +20,8 @@ namespace XR_Education_Project {
         public GameObject moleculeShape3;
         public GameObject moleculeShape4;
 
+        public ElementData chapterOwnerElement;
+
         private GameObject goalMolecule;
 
         void Start()
@@ -48,6 +50,7 @@ namespace XR_Education_Project {
             goalMoleculesData = new ArrayList();
             completedMolecules = new ArrayList();
             SetGoalMoleculesData(element);
+            chapterOwnerElement = element;
             startTime = Time.time;
             Debug.Log($"Setting startTime to: {Time.time}");
             SetNextGoal();
@@ -128,7 +131,7 @@ namespace XR_Education_Project {
 
             // Remove any stray atoms
             AtomManager.RemoveAllAtoms();
-            gameManager.stateEndChapter(finalTime);
+            gameManager.stateEndChapter(finalTime, chapterOwnerElement);
         }
 
         public void RemoveMolecule() 
