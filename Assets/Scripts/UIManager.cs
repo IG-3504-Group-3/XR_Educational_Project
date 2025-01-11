@@ -65,10 +65,18 @@ namespace XR_Education_Project {
             
         }
 
-        public void DisplayElementInfoPanel(ElementData elementData)
+        public void DisplayElementInfoPanel(ElementData elementData, float bestTimeFloat)
         {   
             currentElementData = elementData;
-            string bestTime = FormatTime(130.00f); // TODO: add best time 
+            string bestTime = "";
+            if (bestTimeFloat > 0) 
+            {
+                bestTime = FormatTime(bestTimeFloat);
+            } else
+            {
+                bestTime = "Play to get a score!";
+            }
+            
 
             DisableMenuUI();
 
@@ -181,7 +189,7 @@ namespace XR_Education_Project {
             gameManager.stateInfo();
         }
 
-        public void displayEndChapter(float currentTime) //TODO: Add best time 
+        public void displayEndChapter(float currentTime, float bestTime)
         {
             Destroy(chapterUI);
             endChapterUI = Instantiate(endChapterPrefab);
@@ -197,7 +205,7 @@ namespace XR_Education_Project {
             TextMeshProUGUI summaryBestTime = endChapterUI.transform.Find("Canvas/summaryPanel/bestScore")?.GetComponent<TextMeshProUGUI>();
             if (summaryBestTime != null)
             {
-                string formattedTime = FormatTime(currentTime); //TODO: Change to best time
+                string formattedTime = FormatTime(bestTime);
                 summaryBestTime.text = formattedTime;
             }
 
