@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using Unity.VisualScripting;
@@ -72,11 +73,9 @@ namespace XR_Education_Project {
 
         public void SetNextGoal()
         {
-
             if (goalMoleculesData.Count == 0)
             {
-                // TODO: Handle ending of chapter
-                EndChapter();
+                StartCoroutine(EndChapterCoroutine());
                 return;
             }
 
@@ -118,14 +117,20 @@ namespace XR_Education_Project {
             }
             else
             {
-                Debug.Log("startTime is null.");
+                // Debug.Log("startTime is null.");
                 return 0f; 
             }
         }
 
-        public void EndChapter() // Ends the chapter
+        private IEnumerator EndChapterCoroutine()
         {
             finalTime = GetScore();
+            yield return new WaitForSeconds(0.1f);
+            EndChapter(finalTime);
+        }
+
+        public void EndChapter(float finalTime) // Ends the chapter
+        {
             startTime = null;
             goalMoleculesData.Clear();
 

@@ -47,7 +47,7 @@ namespace XR_Education_Project {
                 case ("Chapter"):
                     this.InstantiateAtom();
                     break;
-
+                
                 case (null): 
                     break;
             }

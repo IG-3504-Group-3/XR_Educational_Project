@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace XR_Education_Project {
     public class GameManager : MonoBehaviour
@@ -23,6 +24,8 @@ namespace XR_Education_Project {
         [HideInInspector] public string gameState;
 
         public GameObject interactionManager;
+        public XRRayInteractor rayInteractor;
+        private XRSimpleInteractable[] allInteractables; 
 
         void Start()
         {
@@ -35,28 +38,61 @@ namespace XR_Education_Project {
             stateMenu();
         }
 
+        void Update()
+        {   
+
+        }
+
+
         public void stateMenu()
         {
             gameState = "menu";
             periodicTable.GetComponent<PeriodicTable>().SetElementActions("MainMenu");
+            allInteractables = FindObjectsOfType<XRSimpleInteractable>();
+            foreach (var interactable in allInteractables)
+            {
+                interactable.enabled = true;
+            }
         }
 
         public void stateInfo()
         {
             gameState = "info";
-            periodicTable.GetComponent<PeriodicTable>().SetElementActions("MainMenu");
+            allInteractables = FindObjectsOfType<XRSimpleInteractable>();
+            if (allInteractables is not null){
+                foreach (var interactable in allInteractables)
+                {
+                    interactable.enabled = false;
+                }
+            }
         }
 
         public void stateChapter(ElementData element)
         {
-            chapterManager.StartChapter(element);
             gameState = "chapter";
+            Debug.Log("State chapter");
             periodicTable.GetComponent<PeriodicTable>().SetElementActions("Chapter");
+            chapterManager.StartChapter(element);
+            if (allInteractables is not null){
+                foreach (var interactable in allInteractables)
+                {
+                    interactable.enabled = true;
+                }
+            }
         }
 
         public void stateEndChapter(float finalTime, ElementData finishedElement)
         {
             gameState = "endChapter";
+            Debug.Log("State endchapter");
+            allInteractables = FindObjectsOfType<XRSimpleInteractable>();
+            if (allInteractables is not null){
+                foreach (var interactable in allInteractables)
+                {
+                    interactable.enabled = false;
+                }
+            }
+
             periodicTable.GetComponent<PeriodicTable>().SetElementActions("MainMenu");
 
 
