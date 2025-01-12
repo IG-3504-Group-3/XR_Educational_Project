@@ -86,6 +86,7 @@ namespace XR_Education_Project {
                     interactable.enabled = false;
                 }
             }
+            uiManager.displayEndChapter(finalTime);
         }
     }
 }

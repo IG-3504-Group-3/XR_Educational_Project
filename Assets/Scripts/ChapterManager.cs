@@ -133,7 +133,7 @@ namespace XR_Education_Project {
 
             // Remove any stray atoms
             AtomManager.RemoveAllAtoms();
-            uiManager.displayEndChapter(finalTime);
+            gameManager.stateEndChapter(finalTime);
         }
 
         public void RemoveMolecule() 

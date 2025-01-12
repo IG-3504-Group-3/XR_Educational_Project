@@ -189,7 +189,7 @@ namespace XR_Education_Project {
         public void displayEndChapter(float currentTime) //TODO: Add best time 
         {
             Destroy(chapterUI);
-            gameManager.stateEndChapter(currentTime);
+            
             endChapterUI = Instantiate(endChapterPrefab);
             endChapterUI.SetActive(true);
 
