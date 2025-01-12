@@ -58,7 +58,7 @@ namespace XR_Education_Project {
         {
             if (gameManager.gameState == "menu" && elementData != null)
             {
-                uiManager.DisplayElementInfoPanel(elementData);
+                uiManager.DisplayElementInfoPanel(elementData, gameManager.getBestTime(elementData));
             }
             else if (elementData == null)
             {
