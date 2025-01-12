@@ -52,6 +52,7 @@ namespace XR_Education_Project {
         public void stateInfo()
         {
             gameState = "info";
+            allInteractables = FindObjectsOfType<XRSimpleInteractable>();
             if (allInteractables is not null){
                 foreach (var interactable in allInteractables)
                 {
