@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651ae45d9f8c97a458d5813ca3c8f700, type: 3}
   m_Name: NH3
   m_EditorClassIdentifier: 
-  moleculeName: Ammonia
+  moleculeName: Amonia
   numberOfAtoms: 4
   elements:
   - {fileID: 11400000, guid: 2668223f105b9489a91c6e2c65eb445e, type: 2}
