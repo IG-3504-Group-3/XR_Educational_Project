@@ -47,7 +47,7 @@ namespace XR_Education_Project {
                 case ("Chapter"):
                     this.InstantiateAtom();
                     break;
-
+                
                 case (null): 
                     break;
             }
@@ -58,7 +58,7 @@ namespace XR_Education_Project {
         {
             if (gameManager.gameState == "menu" && elementData != null)
             {
-                uiManager.DisplayElementInfoPanel(elementData);
+                uiManager.DisplayElementInfoPanel(elementData, gameManager.getBestTime(elementData));
             }
             else if (elementData == null)
             {
@@ -72,7 +72,7 @@ namespace XR_Education_Project {
                 atomContainer = new GameObject("AtomContainer");
             }
             Vector3 self_pos = gameObject.transform.position;
-            Vector3 pos = new Vector3(self_pos.x, self_pos.y, self_pos.z - 1);
+            Vector3 pos = new Vector3(self_pos.x, self_pos.y, self_pos.z - 0.1f);
             Quaternion rotation = Quaternion.Euler(0, 90, 0);
 
             currentAtom = Instantiate(atomPrefab, pos, rotation); // Instantiate atom gameobject

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using Unity.VisualScripting;
@@ -19,6 +20,8 @@ namespace XR_Education_Project {
         public GameObject moleculeShape2;
         public GameObject moleculeShape3;
         public GameObject moleculeShape4;
+
+        public ElementData chapterOwnerElement;
 
         private GameObject goalMolecule;
 
@@ -48,6 +51,7 @@ namespace XR_Education_Project {
             goalMoleculesData = new ArrayList();
             completedMolecules = new ArrayList();
             SetGoalMoleculesData(element);
+            chapterOwnerElement = element;
             startTime = Time.time;
             Debug.Log($"Setting startTime to: {Time.time}");
             SetNextGoal();
@@ -69,11 +73,9 @@ namespace XR_Education_Project {
 
         public void SetNextGoal()
         {
-
             if (goalMoleculesData.Count == 0)
             {
-                // TODO: Handle ending of chapter
-                EndChapter();
+                StartCoroutine(EndChapterCoroutine());
                 return;
             }
 
@@ -115,20 +117,26 @@ namespace XR_Education_Project {
             }
             else
             {
-                Debug.Log("startTime is null.");
+                // Debug.Log("startTime is null.");
                 return 0f; 
             }
         }
 
-        public void EndChapter() // Ends the chapter
+        private IEnumerator EndChapterCoroutine()
         {
             finalTime = GetScore();
+            yield return new WaitForSeconds(0.1f);
+            EndChapter(finalTime);
+        }
+
+        public void EndChapter(float finalTime) // Ends the chapter
+        {
             startTime = null;
             goalMoleculesData.Clear();
 
             // Remove any stray atoms
             AtomManager.RemoveAllAtoms();
-            gameManager.stateEndChapter(finalTime);
+            gameManager.stateEndChapter(finalTime, chapterOwnerElement);
         }
 
         public void RemoveMolecule() 

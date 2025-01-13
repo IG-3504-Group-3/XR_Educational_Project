@@ -85,6 +85,8 @@ namespace XR_Education_Project {
                     {
                         Vector3 pos = new Vector3(colIdx, -rowIdx, 0) * spacing;
                         var newElement = Instantiate(element, pos, Quaternion.identity);
+                        newElement.transform.parent = gameObject.transform;
+
                         // Change the element properties
                         newElement.GetComponent<Element>().elementData = elementHash[(rowIdx, colIdx)];
                         uiManager.DisplayElement(newElement);
@@ -95,7 +97,6 @@ namespace XR_Education_Project {
                         {
                             renderer.material = GetMaterial(newElement.GetComponent<Element>().elementData.elementClass);
                         }
-                        newElement.transform.parent = gameObject.transform;
 
                         // Set the element action
                         newElement.GetComponent<Element>().SetAction("MainMenu");
@@ -103,6 +104,8 @@ namespace XR_Education_Project {
                     }
                 }
             }
+
+            gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); 
 
         }
 
