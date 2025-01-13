@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+using System.IO;
 using UnityEngine;
 using XR_Education_Project;
 
@@ -26,7 +26,8 @@ public class AtomManager : MonoBehaviour
     {
         // Replaces the texture of the atom with one found in the specific path
         // Textures should be named just like their atomic symbol
-        Texture2D texture = (Texture2D)AssetDatabase.LoadAssetAtPath("Assets/Resources/Textures/" + elementData.atomicSymbol + ".png", typeof(Texture2D));
+
+        Texture2D texture = Resources.Load<Texture2D>(Path.Join("Textures", elementData.atomicSymbol));
         if (texture == null) 
         {
             Debug.LogError($"Texture for symbol '{elementData.atomicSymbol}' not found in Resources/Textures/");
