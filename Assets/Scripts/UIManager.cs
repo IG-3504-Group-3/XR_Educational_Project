@@ -65,18 +65,10 @@ namespace XR_Education_Project {
             
         }
 
-        public void DisplayElementInfoPanel(ElementData elementData, float bestTimeFloat)
+        public void DisplayElementInfoPanel(ElementData elementData)
         {   
             currentElementData = elementData;
-            string bestTime = "";
-            if (bestTimeFloat > 0) 
-            {
-                bestTime = FormatTime(bestTimeFloat);
-            } else
-            {
-                bestTime = "Play to get a score!";
-            }
-            
+            string bestTime = FormatTime(130.00f); // TODO: add best time 
 
             DisableMenuUI();
 
@@ -124,11 +116,6 @@ namespace XR_Education_Project {
             }
 
             infoPanel.SetActive(true);
-
-            GameObject panel = infoPanel.transform.Find("Canvas/background/infoPanel").gameObject;
-            GameObject card = infoPanel.transform.Find("Canvas/background/elementCard").gameObject;
-            DisableRaycastTargets(panel);
-            DisableRaycastTargets(card);
             
             // Get panel buttons
             backToMenuButton = infoPanel.transform.Find("Canvas/background/returnMenuButton")?.GetComponent<Button>();
@@ -194,18 +181,11 @@ namespace XR_Education_Project {
             gameManager.stateInfo();
         }
 
-        public void displayEndChapter(float currentTime, float bestTime)
+        public void displayEndChapter(float currentTime) //TODO: Add best time 
         {
             Destroy(chapterUI);
-            
             endChapterUI = Instantiate(endChapterPrefab);
             endChapterUI.SetActive(true);
-
-            TextMeshProUGUI chapterName = endChapterUI.transform.Find("Canvas/summaryPanel/chapterName")?.GetComponent<TextMeshProUGUI>();
-            if (chapterName != null)
-            {
-                chapterName.text = currentElementData.elementName;
-            }
 
             TextMeshProUGUI summaryCurrentTime = endChapterUI.transform.Find("Canvas/summaryPanel/currentScore")?.GetComponent<TextMeshProUGUI>();
             if (summaryCurrentTime != null)
@@ -217,21 +197,15 @@ namespace XR_Education_Project {
             TextMeshProUGUI summaryBestTime = endChapterUI.transform.Find("Canvas/summaryPanel/bestScore")?.GetComponent<TextMeshProUGUI>();
             if (summaryBestTime != null)
             {
-                string formattedTime = FormatTime(bestTime);
+                string formattedTime = FormatTime(currentTime); //TODO: Change to best time
                 summaryBestTime.text = formattedTime;
             }
-
-            GameObject summary = endChapterUI.transform.Find("Canvas/summaryPanel").gameObject;
-            DisableRaycastTargets(summary);
-
-            Graphic button = summary.transform.Find("backButton")?.GetComponent<Graphic>();
-            button.raycastTarget = true;
-
 
             //Get finish chapter button
             finishChapterButton = endChapterUI.transform.Find("Canvas/summaryPanel/backButton")?.GetComponent<Button>();
             if (finishChapterButton != null)
             {
+                Debug.Log("Finish Chapter Button Found.");
                 finishChapterButton.onClick.AddListener(finishChapterClicked);
             }
         }
@@ -266,15 +240,12 @@ namespace XR_Education_Project {
 
         public void setChapterTime(float time)
         {
-            if (chapterUI != null){
-                TextMeshProUGUI chapterTimer = chapterUI.transform.Find("Canvas/chapterBar/timer")?.GetComponent<TextMeshProUGUI>();
-                if (chapterTimer != null)
-                {
-                    string formattedTime = FormatTime(time);
-                    chapterTimer.text = formattedTime;
-                }
+            TextMeshProUGUI chapterTimer = chapterUI.transform.Find("Canvas/chapterBar/timer")?.GetComponent<TextMeshProUGUI>();
+            if (chapterTimer != null)
+            {
+                string formattedTime = FormatTime(time);
+                chapterTimer.text = formattedTime;
             }
-        
         }
 
         public string FormatTime(float time)
@@ -282,18 +253,6 @@ namespace XR_Education_Project {
             int minutes = Mathf.FloorToInt(time / 60);  // Get minutes
             int seconds = Mathf.FloorToInt(time % 60); // Get remaining seconds
             return string.Format("{0}:{1:D2}", minutes, seconds); // Format as mm:ss
-        }
-
-        public void DisableRaycastTargets(GameObject parent)
-        {
-            // Get all components in the parent and its children
-            Graphic[] graphics = parent.GetComponentsInChildren<Graphic>();
-
-            // disable raycasting target
-            foreach (var graphic in graphics)
-            {
-                graphic.raycastTarget = false;
-            }
         }
 
     }
