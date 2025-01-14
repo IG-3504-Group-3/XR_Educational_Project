@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using XR_Education_Project;
 
 namespace XR_Education_Project {
     public class PeriodicTable : MonoBehaviour
     {
+        // Class that handles the creation of the periodic table
         private UIManager uiManager;
         public Material metalMaterial;
         public Material nonmetalMaterial;

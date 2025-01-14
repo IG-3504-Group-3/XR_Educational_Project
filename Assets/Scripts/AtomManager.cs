@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -6,21 +5,10 @@ using XR_Education_Project;
 
 public class AtomManager : MonoBehaviour
 {
+    // Manages the atoms in the world
     private static List<GameObject> instantiatedAtoms = new List<GameObject>();
     public ElementData elementData;
     public bool isFilled = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void fill()
     {
@@ -46,7 +34,6 @@ public class AtomManager : MonoBehaviour
         }
 
         instantiatedAtoms.Add(newAtom);
-        Debug.Log($"Atom created. Total Atoms: {instantiatedAtoms.Count}");
     }
 
     public static void RemoveAtom(GameObject currentAtom)

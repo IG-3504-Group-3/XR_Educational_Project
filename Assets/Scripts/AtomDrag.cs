@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace XR_Education_Project{
     public class AtomDrag : MonoBehaviour
     {
+        // Script for drag functionality
         private Camera mainCamera;
         private GameObject draggingObject;
         private bool isDragging = false;

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -7,19 +5,13 @@ using Newtonsoft.Json;
 
 public class SaveManager : MonoBehaviour
 {
-
+    // Class that handles the saving of the state to the file system
     private string dataDirPath = "";
     private string dataFileName = "elementFinishTimes";
 
     void Start()
     {
         dataDirPath = Application.persistentDataPath;
-    }
-
-
-    void Update()
-    {
-        
     }
 
     public void Save(Dictionary<string, List<float>> elementTimes)
@@ -37,9 +29,6 @@ public class SaveManager : MonoBehaviour
                 writer.Write(dataToStore);
             }
         }
-
-        Debug.Log("Saved data to: " +  fullPath);
-
     }
 
     public Dictionary<string, List<float>> Load ()
@@ -61,8 +50,6 @@ public class SaveManager : MonoBehaviour
             }
             loadedData = JsonConvert.DeserializeObject <Dictionary<string, List<float>>>(dataToLoad);
         }
-
-        Debug.Log("Loaded Data");
 
         return loadedData;
     }

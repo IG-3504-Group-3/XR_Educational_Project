@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -6,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace XR_Education_Project {
     public class GameManager : MonoBehaviour
     {
+        // Class that manages the current state of the game
         public MoleculeData[] allMoleculeData;
         public ElementData[] elementDataArray;
 
