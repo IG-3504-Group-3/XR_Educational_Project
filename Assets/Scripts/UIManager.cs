@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +6,7 @@ using TMPro;
 namespace XR_Education_Project {
     public class UIManager : MonoBehaviour
     {
+        // Class that manegaes and creates the UI elements
         public GameObject elementInfoPanelPrefab;
         public GameObject chapterViewPrefab;
         public GameObject mainMenu;

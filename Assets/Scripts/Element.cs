@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace XR_Education_Project {
     public class Element : MonoBehaviour
     {
+        // Element class for "squares" of the periodic table
         private GameManager gameManager;
         private UIManager uiManager;
         private String action = null;
@@ -37,6 +34,7 @@ namespace XR_Education_Project {
 
         private void OnRaycastClick(SelectEnterEventArgs args)
         {
+            // Handles what should happen when an element is clicked
             switch (action)
             {
                 case "MainMenu":
@@ -66,6 +64,7 @@ namespace XR_Education_Project {
         }
 
         private void InstantiateAtom() {
+            // Creates an atom in front of an element
             if (atomContainer == null)
             {
                 atomContainer = new GameObject("AtomContainer");

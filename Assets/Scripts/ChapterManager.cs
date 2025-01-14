@@ -3,11 +3,10 @@ using System.Collections;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using XR_Education_Project;
-
 namespace XR_Education_Project {
     public class ChapterManager: MonoBehaviour
     {
+        // Class that handles the progression through the chapter as well as keeping track of the time
         private ArrayList goalMoleculesData;
         public float ?startTime;
         public ArrayList completedMolecules;
@@ -53,7 +52,6 @@ namespace XR_Education_Project {
             SetGoalMoleculesData(element);
             chapterOwnerElement = element;
             startTime = Time.time;
-            Debug.Log($"Setting startTime to: {Time.time}");
             SetNextGoal();
         }
 
@@ -67,7 +65,6 @@ namespace XR_Education_Project {
                     goalMoleculesData.Add(molecule);
                 }
             }
-            Debug.Log($"Goal Molecules to complete: {goalMoleculesData.Count}");
             totalGoalMolecules = goalMoleculesData.Count;
         }
 
